@@ -1,0 +1,9 @@
+.container
+  .row.mt-5.pt-5
+    .col-12
+      %h2
+        Enter searched phrase:
+      %form
+        .form-group
+          %input#searchedQuery.js-searched-query.w-100
+        %input.btn.btn-primary.js-search-query{type: "submit", data: {path: queries_path}}

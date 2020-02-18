@@ -1,0 +1,21 @@
+.container
+  .row.text-center.mt-5
+    .col-12
+      %h1
+        = @query.name
+    .col-12
+      %table.table
+        %thead
+          %tr
+            %th
+              Text
+            %th
+              Uri
+        %tbody
+          - @query.query_results.each do |query|
+            %tr
+              %td
+                = query.text
+              %td
+                = link_to 'Result link', query.uri
+

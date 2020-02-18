@@ -1,0 +1,22 @@
+.container
+  .row.mt-5.pt-5
+    .col-12.text-left
+      = link_to 'Add query', new_query_path, class: 'btn btn-primary'
+  .row.mt-5
+    .col-12
+      %table.table
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              Actions
+        %tbody
+          - @queries.each do |query|
+            %tr
+              %td
+                = query.name
+              %td
+                = link_to 'Show', query_path(query)
+                = link_to 'Edit', edit_query_path(query)
+                = link_to 'Destroy', query_path(query), class: 'js-delete-query'
