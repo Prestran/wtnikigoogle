@@ -4,6 +4,8 @@ class Query < ApplicationRecord
   belongs_to :user
   has_many :query_results, dependent: :destroy
 
+  validates_presence_of :name
+
   INVALID_TEXT = ['', 'Zaloguj się'].freeze
 
   def build_query(searched_query)
@@ -11,18 +13,18 @@ class Query < ApplicationRecord
 
     begin
       ActiveRecord::Base.transaction do
-        update name: searched_query
-        raise ActiveRecord::Rollback unless errors.empty?
-
+        update! name: searched_query
         results.each do |result|
           next if INVALID_TEXT.include?(result.text)
-          raise ActiveRecord::Rollback unless query_results.create(text: result.text, uri: result.resolved_uri)
+          query_results.create!(text: result.text, uri: result.resolved_uri)
         end
       end
 
-    rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid => exception
+      Rails.logger.info exception.message
       return false
     end
+    true
   end
 
   def self.refresh_queries
@@ -38,17 +40,12 @@ class Query < ApplicationRecord
     input = form.field_with name: 'q'
     input.value = searched_query
     new_page =  form.submit
-    return false if new_page.nil?
-
-    results = new_page.links_with href: /url\?q/
-    return false if results.empty?
-
-    results
+    new_page.links_with href: /url\?q/
   end
 
   def check_refresh
     new_results = search_query name
-    return false if new_results == false
+    return false if new_results.count == 1
 
     begin
       ActiveRecord::Base.transaction do
@@ -58,9 +55,11 @@ class Query < ApplicationRecord
           end
         end
       end
-    rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid => exception
+      Rails.logger.info exception.message
       return false
     end
+    true
   end
 
 end

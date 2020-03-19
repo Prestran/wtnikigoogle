@@ -18,7 +18,7 @@ class QueriesController < ApplicationController
       if !params[:searched].nil? && @query.build_query(params[:searched])
         format.json { render json: { message: 'Query created!', redirect_path: query_path(@query) }, status: :ok }
       else
-        format.json { render json: { message: 'Something went wrong' }, status: :unprocessable_entity }
+        format.json { render json:  @query.errors.messages, status: :unprocessable_entity }
       end
     end
   end

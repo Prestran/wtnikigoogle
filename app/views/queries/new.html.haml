@@ -5,5 +5,5 @@
         Enter searched phrase:
       %form
         .form-group
-          %input#searchedQuery.js-searched-query.w-100
-        %input.btn.btn-primary.js-search-query{type: "submit", data: {path: queries_path}}
+          %input#searchedQuery.js-searched-query.w-100{ name: 'Name' }
+        %input.btn.btn-primary.js-search-query{type: "submit", data: {path: queries_path}, name: 'Submit'}

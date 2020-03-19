@@ -16,3 +16,13 @@
 //= require jquery
 //= require queries
 //= require_tree .
+
+const handleXhrErrors = (xhr) => {
+    let hashErrors = xhr.responseJSON;
+    let myMsg = "";
+    $.each(hashErrors, function(key, value) {
+        if(value[0]) myMsg += key.charAt(0).toUpperCase() + key.slice(1) + ': ' + value[0] + '. ';
+        $("[id$='"+key+"']").addClass("invalid");
+    });
+    alert(myMsg)
+}

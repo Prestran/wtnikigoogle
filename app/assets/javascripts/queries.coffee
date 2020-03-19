@@ -11,7 +11,7 @@ $(document).ready ->
         alert(xhr.message)
         window.location = xhr.redirect_path
       error: (xhr) ->
-        alert(xhr.message)
+        handleXhrErrors(xhr)
 
   $(document).on 'click', '.js-delete-query', (e) ->
     e.preventDefault()
