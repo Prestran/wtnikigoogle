@@ -5,11 +5,10 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
 require 'capybara/rails'
 require 'rspec/rails'
-# require 'database_cleaner'
+require 'database_cleaner'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -36,7 +35,6 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
-
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

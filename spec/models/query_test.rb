@@ -11,7 +11,7 @@ RSpec.describe Query do
       end
 
       it 'updates query initial name' do
-        expect { query.build_query('warhammer') }.to change(query, :name).from('abc').to('warhammer')
+        expect { query.build_query('warhammer') }.to change(query, :name).from('qwerty').to('warhammer')
       end
     end
 

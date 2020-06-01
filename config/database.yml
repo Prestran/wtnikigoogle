@@ -84,6 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: wynikiGoogle_production
-  username: wynikiGoogle
-  password: <%= ENV['WYNIKIGOOGLE_DATABASE_PASSWORD'] %>
+

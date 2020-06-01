@@ -50,6 +50,8 @@ class Query < ApplicationRecord
     begin
       ActiveRecord::Base.transaction do
         query_results.each_with_index do |query_result, index|
+          next if new_results[index].nil?
+
           if query_result.text != new_results[index].text || query_result.uri != new_results[index].resolved_uri
             query_result.update(text: new_results[index].text, uri: new_results[index].resolved_uri)
           end

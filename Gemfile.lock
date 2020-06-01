@@ -83,6 +83,11 @@ GEM
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.6)
+    daemons (1.2.4)
+    database_cleaner (1.8.3)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     delayed_job (4.1.8)
       activesupport (>= 3.0, < 6.1)
     delayed_job_active_record (4.1.4)
@@ -327,6 +332,8 @@ DEPENDENCIES
   capybara
   chromedriver-helper
   coffee-rails (~> 4.2)
+  daemons
+  database_cleaner-active_record
   delayed_job_active_record
   devise
   factory_bot_rails
@@ -356,4 +363,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.0.1
+   2.1.4

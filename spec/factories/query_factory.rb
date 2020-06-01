@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :query do
     user
-    name { 'abc' }
+    name { 'qwerty' }
   end
 end

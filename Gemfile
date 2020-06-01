@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 gem 'bootstrap', '~> 4.4.1'
+gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'devise'
 gem 'haml'
@@ -64,6 +65,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'database_cleaner-active_record'
   gem 'capybara'
   gem 'webdrivers'
   gem 'selenium-webdriver'
