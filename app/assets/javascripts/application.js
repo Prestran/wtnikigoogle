@@ -15,6 +15,9 @@
 //= require turbolinks
 //= require jquery
 //= require queries
+//= require stisla
+//= require scripts
+//= require custom
 //= require_tree .
 
 const handleXhrErrors = (xhr) => {
